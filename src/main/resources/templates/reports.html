@@ -1,95 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/base}">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Reports & Analytics</title>
-    <link rel="stylesheet" th:href="@{/css/tailwind.css}">
+    <title>Library Reports & Analytics - BiblioHub</title>
   </head>
-
-  <body class="bg-gray-100 min-h-screen flex">
-
-    <aside
-      class="w-64 bg-white shadow-md hidden md:flex flex-col justify-between">
-      <div>
-        <div class="p-6 border-b border-gray-100">
-          <h1 class="text-2xl font-light text-gray-800 flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-purple-600 block"></span>
-            Biblio<span class="font-semibold text-purple-600">Hub</span>
-          </h1>
-        </div>
-        <nav class="p-4 space-y-1">
-          <a th:href="@{/dashboard}"
-            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-purple-600 transition">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z" />
-            </svg>
-            Dashboard
-          </a>
-
-          <a th:href="@{/Catalogue}"
-            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-purple-600 transition">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            Book Catalog
-          </a>
-
-          <a th:href="@{/circulation}"
-            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-purple-600 transition">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-            </svg>
-            Issue / Returns
-          </a>
-
-          <a th:href="@{/members}"
-            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg text-gray-600 hover:bg-gray-50 hover:text-purple-600 transition">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.114-1.28.319-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            Members
-          </a>
-
-          <a th:href="@{/reports}"
-            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg bg-purple-50 text-purple-600 transition">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-            Reports
-          </a>
-        </nav>
-      </div>
-
-      <div class="p-4 border-t border-gray-100">
-        <form th:action="@{/logout}" method="post">
-          <button type="submit"
-            class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 transition">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            Log Out
-          </button>
-        </form>
-      </div>
-    </aside>
-
-    <div class="flex-1 flex flex-col min-w-0 overflow-x-hidden">
+  <body>
+    <div layout:fragment="content">
 
       <header
-        class="bg-white shadow-sm h-16 flex items-center justify-between px-6 z-10">
+        class="bg-white shadow-sm h-16 flex items-center justify-between px-6 z-10 border-b border-gray-100">
         <h2 class="text-xl font-semibold text-gray-800">System Reports &
           Metrics</h2>
         <div
@@ -106,7 +26,8 @@
               class="text-sm font-medium text-gray-500 uppercase tracking-wider">Fines
               Collected (MTD)</p>
             <p class="text-3xl font-semibold text-gray-800 mt-1"
-              th:text="'ksh ' + ${#numbers.formatDecimal(metrics.finesCollectedMtd, 1, 2)}">ksh 0.00</p>
+              th:text="'ksh ' + ${#numbers.formatDecimal(metrics.finesCollectedMtd, 1, 2)}">ksh
+              0.00</p>
             <span class="text-xs text-green-600 font-medium mt-1 inline-block">↑
               12% vs last month</span>
           </div>
@@ -224,42 +145,47 @@
             <h3 class="font-medium text-gray-800">Critical Overdue Fine
               Runaways</h3>
           </div>
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr
-                class="bg-gray-50 text-gray-500 text-xs font-semibold uppercase tracking-wider border-b border-gray-100">
-                <th class="px-6 py-3.5">Borrower Handle</th>
-                <th class="px-6 py-3.5">Contact Link</th>
-                <th class="px-6 py-3.5">Target Status</th>
-                <th class="px-6 py-3.5">Fine Balance</th>
-              </tr>
-            </thead>
-            <tbody class="text-sm text-gray-600 divide-y divide-gray-100">
-              <tr th:each="loan : ${overdueLoans}">
-                <td class="px-6 py-4 font-medium text-gray-800"
-                  th:text="${loan.borrower.name} + ' (' + ${loan.borrower.borrowerId} + ')'">Full
-                  Name</td>
-                <td class="px-6 py-4 font-mono text-xs"
-                  th:text="${loan.borrower.email}">contact@domain.com</td>
-                <td class="px-6 py-4 text-red-500 font-medium font-mono"
-                  th:text="${loan.status.name()}">ACTIVE</td>
-                <td class="px-6 py-4">
-                  <span class="text-red-600 font-bold"
-                    th:text="'ksh ' + ${#numbers.formatDecimal(loan.fineAccrued, 1, 2)}">ksh 0.00</span>
-                </td>
-              </tr>
-              <tr th:if="${#lists.isEmpty(overdueLoans)}">
-                <td colspan="4"
-                  class="px-6 py-10 text-center text-gray-400 italic">
-                  No critical overdue runaways found in the operational registry
-                  indexes.
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-gray-50 text-gray-500 text-xs font-semibold uppercase tracking-wider border-b border-gray-100">
+                  <th class="px-6 py-3.5">Borrower Handle</th>
+                  <th class="px-6 py-3.5">Contact Link</th>
+                  <th class="px-6 py-3.5">Target Status</th>
+                  <th class="px-6 py-3.5">Fine Balance</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm text-gray-600 divide-y divide-gray-100">
+                <tr th:each="loan : ${overdueLoans}"
+                  class="hover:bg-gray-50/70 transition">
+                  <td class="px-6 py-4 font-medium text-gray-800"
+                    th:text="${loan.borrower.name} + ' (' + ${loan.borrower.borrowerId} + ')'">Full
+                    Name</td>
+                  <td class="px-6 py-4 font-mono text-xs"
+                    th:text="${loan.borrower.email}">contact@domain.com</td>
+                  <td class="px-6 py-4 text-red-500 font-medium font-mono"
+                    th:text="${loan.status.name()}">ACTIVE</td>
+                  <td class="px-6 py-4">
+                    <span class="text-red-600 font-bold"
+                      th:text="'ksh ' + ${#numbers.formatDecimal(loan.fineAccrued, 1, 2)}">ksh
+                      0.00</span>
+                  </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(overdueLoans)}">
+                  <td colspan="4"
+                    class="px-6 py-10 text-center text-gray-400 italic">
+                    No critical overdue runaways found in the operational
+                    registry indexes.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </main>
+
     </div>
   </body>
 </html>
